@@ -8,8 +8,7 @@ class AccountMove(models.Model):
 
     discount_total = fields.Monetary(compute='_total_discount', string='Descuento Total', default=0, readonly=False, store=True)
 
-
-    @api.depends('invoice_line_ids.quantity','invoice_line_ids.price_unit','invoice_line_ids.discount')
+    @api.depends('state','invoice_line_ids.quantity','invoice_line_ids.price_unit','invoice_line_ids.discount')
     def _total_discount(self):
         # in_draft_mode = self != self._origin
 
